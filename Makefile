@@ -1,7 +1,7 @@
 NAME = pipex
 
 CC = cc
-CFLAGS = -Wall -Wall -Werror -Iincludes 
+CFLAGS = -Wall -Wall -Werror -Iinclude 
 
 SRC_DIR = src
 
