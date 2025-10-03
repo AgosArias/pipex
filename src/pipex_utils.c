@@ -6,7 +6,7 @@
 /*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:04:23 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/03 14:03:13 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/03 16:57:24 by agossariass      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_get_path(char **envp, char *cmd)
 	return (path_complete);
 }
 
-void	execute(int argc, char *cmd_arg, char **envp, int *pfd)
+void	execute( char *cmd_arg, char **envp)
 {
 	char	**cmd;
 	char	*path;

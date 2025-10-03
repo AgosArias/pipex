@@ -6,13 +6,13 @@
 /*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:17 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/03 13:44:23 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/03 16:59:46 by agossariass      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-void	ft_father_process(int argc, char **argv, char **envp, int *pfd)
+void	ft_father_process(char **argv, char **envp, int *pfd)
 {
 	int	fd;
 
@@ -24,10 +24,10 @@ void	ft_father_process(int argc, char **argv, char **envp, int *pfd)
 		ft_error("Error with file");
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	execute(argc, argv[3], envp, pfd);
+	execute(argv[3], envp);
 }
 
-void	ft_child_process(int argc, char **argv, char **envp, int *pfd)
+void	ft_child_process(char **argv, char **envp, int *pfd)
 {
 	int	file;
 
@@ -39,15 +39,13 @@ void	ft_child_process(int argc, char **argv, char **envp, int *pfd)
 	close(pfd[1]);
 	dup2(file, STDIN_FILENO);
 	close(file);
-	execute(argc, argv[2], envp, pfd);
+	execute(argv[2], envp);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	pid_t	pid;
 	int		pfd[2];
-	int		status;
-
 
 	if (argc != 5)
 		ft_error("Need 4 arguments");
@@ -57,10 +55,6 @@ int	main(int argc, char **argv, char **envp)
 	if (pid == -1)
 		ft_error("Error fork");
 	if (pid == 0)
-		ft_child_process(argc, argv, envp, pfd);
-	else
-	{
-		ft_father_process(argc, argv, envp, pfd);
-		waitpid(pid, &status, 0);
-	}
+		ft_child_process(argv, envp, pfd);
+	ft_father_process(argv, envp, pfd);	
 }

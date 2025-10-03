@@ -6,7 +6,7 @@
 /*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:40:35 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/03 13:35:25 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/03 16:57:22 by agossariass      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-void	execute(int argc, char *cmd_arg, char **envp, int *pfd);
+void	execute(char *cmd_arg, char **envp);
 void	ft_error(char *msg);
 
 # endif
