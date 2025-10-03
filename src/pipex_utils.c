@@ -6,7 +6,7 @@
 /*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:04:23 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/03 16:57:24 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/03 17:27:30 by agossariass      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,13 @@ void	ft_free_matriz(char **matriz)
 
 char	*ft_get_path(char **envp, char *cmd)
 {
-	char	*path;
 	char	**dir;
 	char	*path_complete;
 	int		i;
 
-	if (!cmd || !envp || !*envp)
-		return (NULL);
 	while (*envp && !ft_strnstr(*envp, "PATH", 4))
 		envp++;
-	if (!*envp)
+	if (!cmd || !envp || !*envp)
 		return (NULL);
 	i = 0;
 	dir = ft_split((*envp) + 5, ':');
@@ -53,20 +50,11 @@ char	*ft_get_path(char **envp, char *cmd)
 	path_complete = NULL;
 	while (dir[i])
 	{
-		path = ft_strjoin(dir[i], "/");
-		if (!path)
-			break;
-		path_complete = ft_strjoin(path, cmd);
-		if (!path_complete)
-			break;
-		free(path);
-		if (!access(path_complete, X_OK))
+		path_complete = ft_strjoin(ft_strjoin(dir[i], "/"), cmd);
+		if (!path_complete || !access(path_complete, X_OK))
 			break ;
-		else
-		{
-			free(path_complete);
-			path_complete = NULL;
-		}
+		free(path_complete);
+		path_complete = NULL;
 		i++;
 	}
 	ft_free_matriz(dir);

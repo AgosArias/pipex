@@ -6,7 +6,7 @@
 /*   By: agossariass <agossariass@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:17 by aarias-d          #+#    #+#             */
-/*   Updated: 2025/10/03 16:59:46 by agossariass      ###   ########.fr       */
+/*   Updated: 2025/10/03 17:19:59 by agossariass      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ int	main(int argc, char **argv, char **envp)
 		ft_error("Error fork");
 	if (pid == 0)
 		ft_child_process(argv, envp, pfd);
-	ft_father_process(argv, envp, pfd);	
+	ft_father_process(argv, envp, pfd);
 }
